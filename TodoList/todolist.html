@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="todostyle.css">
+    
+</head>
+<body>
+    <header class="navbar">
+        <h1>✔️ To Do List</h1>
+        <p>Managing your time wisely..</p>
+    </header>
+    <div class="container">
+        <h2>Your Tasks🎯</h2>
+        <p id="noTask">📝No task has been Scheduled</p>  
+    </div><hr>
+    <div class="completed">
+        <h2>Tasks Completed✅ </h2>  
+        <p id="noCompletedTask">🕒No task Completed yet</p>       
+    </div>
+    <div class="overlay"></div>
+    <div class="inputpopup">
+        <h2>Add Task</h2>
+        <form>
+            <input id="inputTask" type="text" placeholder="Your Task" required>
+            <input id="taskCategory" type="text" placeholder="Task Category" required>
+            <label for="Complete"><h3>Due Time</h3></label>
+            <input id="taskTime" type="time" required> 
+            <label for="Complete"><h3>Due Date</h3></label>
+            <input id="inputDescription" type="date" required>
+            <label for="priority"><h3>Priority Level</h3></label>
+            <div id="Plevel">
+                <input class="level" type ="radio" name="Priority" value="high">High
+                <input class="level" type ="radio" name="Priority" value="medium">Medium
+                <input class="level" type ="radio" name="Priority" value="low">Low
+            </div>
+            <button id="addTask">Add</button>
+            <button id="cancel">Cancel</button>
+        </form>
+    </div>
+    <button type="button" id="popup" class="popupbtn">+</button>
+
+
+    <script src="todoscript.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+body{
+    background: #020617;   /* deep navy */
+    color: #E5E7EB;
+}
+.navbar{
+    padding:30px;
+    padding-left: 50px;
+    font-size: large;
+    background: #111827;   /* dark slate */
+    color: #F9FAFB;
+}
+.container{
+    padding:30px;
+    width:100%;
+}
+.container h2,#noTask,#completedTask{
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+.completed{
+    padding:30px;
+    width:100%;
+}
+.completed h2,#noCompletedTask{
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+.task{
+    background-color: rgb(239, 160, 23);
+    padding:20px;
+    width:25%;
+    border-radius:10px;
+    margin:10px;
+    padding-bottom: 5px;
+    font-size:25px;
+    display:inline-block;
+    vertical-align: top;
+    box-sizing:border-box;
+    overflow-wrap: break-word;
+    transition: transform 0.2s ease;
+    color: #111827;
+}
+.task:hover{
+    transform: scale(1.005);
+    box-shadow: 0px 4px 8px rgb(114, 113, 113);
+}
+.inputpopup{
+    background-color:  #009387;
+    padding:20px;
+    width:35%;
+    height:auto;
+    border-radius:10px;
+    border:none;
+    position:fixed;
+    left:30%;
+    top:25%;
+    display:none;
+    color: #111827;
+}
+.overlay{
+    background-color: black;
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    min-height:150%;
+    opacity:0.7;
+    display: none;
+}
+.popupbtn{
+    border-radius:100%;
+    padding:10px;
+    padding-left:22px;
+    padding-right:22px;
+    font-size: 40px;
+    position:fixed;
+    bottom:60px;
+    right:60px;
+    background:linear-gradient(135deg, #009387, #8c8c92);
+    border:none;
+    transition: 0.2s ease;
+}
+.inputpopup input{
+    width:95%;
+    border-radius: 3px;
+    margin-top:15px;
+    margin-bottom: 15px;
+    padding:10px;
+    border:none;
+}
+.inputpopup button{
+    padding:10px;
+    border:none;
+    background:linear-gradient(black,rgb(49, 49, 49));
+    color:white;
+    margin-right:30px;
+    width:70px;
+    border-radius: 5px;
+}
+.inputpopup button, .task button:hover{
+    cursor: pointer;
+}
+.task h4{
+    margin-bottom:10px;
+    width: auto;
+}
+.task p{
+    margin-bottom:10px;
+    font-size: 15px;
+}
+.task button{
+    padding:10px;
+    border:none;
+    background-color:black;
+    color:white;
+    margin:5 px;
+    margin-bottom: 10px;
+    width:fit-content;
+    border-radius: 5px;
+}
+.inputpopup #Plevel{
+    display:flex;
+}
+.popupbtn:hover{
+    cursor: pointer;
+    transform:scale(1.1);
+}

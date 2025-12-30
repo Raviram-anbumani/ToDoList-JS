@@ -6,19 +6,68 @@
 body{
     background: #020617;   /* deep navy */
     color: #E5E7EB;
+    position:relative;
+}
+.app{
+    display: flex;
+    height:100vh;
+}
+.main{
+    flex:1;
+}
+.sidebar{
+    width: 20%;
+    padding:10px;
+    background: linear-gradient(#111827,#020617);
+    display :flex;
+    flex-direction: column;
 }
 .navbar{
+    display: flex;
+    justify-content: space-between;
     padding:30px;
     padding-left: 50px;
     font-size: large;
     background: #111827;   /* dark slate */
     color: #F9FAFB;
 }
+#login{
+    border-radius:10%;
+    padding:10px;
+    padding-left:22px;
+    padding-right:22px;
+    font-size: 20px;
+    background:linear-gradient(135deg, #009387, #8c8c92);
+    border:none;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
 .container{
     padding:30px;
     width:100%;
 }
-.container h2,#noTask,#completedTask{
+.yourTask{
+    padding :30px;
+    padding-bottom:0;
+    margin-left: 10px;
+}
+.sidebar .navlist li{
+    padding:10px;
+    font-size: 1.2em;
+}
+.navlist ul{
+    margin-top:20%;
+    list-style:none;
+}
+.navlist a{
+    color:#E5E7EB;
+    text-decoration: none;
+}
+.userTitle{
+    margin:1.1rem;
+    font-size:1.8em;
+}
+#noTask,#completedTask{
     margin-left: 10px;
     margin-bottom: 20px;
 }
@@ -26,7 +75,7 @@ body{
     padding:30px;
     width:100%;
 }
-.completed h2,#noCompletedTask{
+#noCompletedTask{
     margin-left: 10px;
     margin-bottom: 20px;
 }
@@ -37,11 +86,10 @@ body{
     border-radius:10px;
     margin:10px;
     padding-bottom: 5px;
-    font-size:25px;
+    font-size:1.1em;
     display:inline-block;
     vertical-align: top;
     box-sizing:border-box;
-    overflow-wrap: break-word;
     transition: transform 0.2s ease;
     color: #111827;
 }
@@ -50,7 +98,7 @@ body{
     box-shadow: 0px 4px 8px rgb(114, 113, 113);
 }
 .inputpopup{
-    background-color:  #009387;
+    background: linear-gradient(#111827,#020617);
     padding:20px;
     width:35%;
     height:auto;
@@ -60,7 +108,7 @@ body{
     left:30%;
     top:25%;
     display:none;
-    color: #111827;
+    color: #c0c1c5;
 }
 .overlay{
     background-color: black;
@@ -85,7 +133,7 @@ body{
     border:none;
     transition: 0.2s ease;
 }
-.inputpopup input{
+.inputpopup input,.signup input{
     width:95%;
     border-radius: 3px;
     margin-top:15px;
@@ -93,18 +141,24 @@ body{
     padding:10px;
     border:none;
 }
-.inputpopup button{
+#user{
+    border-radius:100%;
+}
+.buttonCon{
+    display:flex;
+    justify-content: center;
+    gap:50px;
+}
+.inputpopup button,.signup button{
     padding:10px;
     border:none;
-    background:linear-gradient(black,rgb(49, 49, 49));
-    color:white;
-    margin-right:30px;
+    background:linear-gradient(135deg, #009387, #8c8c92);
+    color:black;
     width:70px;
     border-radius: 5px;
+    cursor :pointer;
 }
-.inputpopup button, .task button:hover{
-    cursor: pointer;
-}
+
 .task h4{
     margin-bottom:10px;
     width: auto;
@@ -122,6 +176,7 @@ body{
     margin-bottom: 10px;
     width:fit-content;
     border-radius: 5px;
+    cursor: pointer;
 }
 .inputpopup #Plevel{
     display:flex;
@@ -129,4 +184,25 @@ body{
 .popupbtn:hover{
     cursor: pointer;
     transform:scale(1.1);
+}
+.inputpopup .Plevel .levelName{
+    padding:0;
+    margin:0;
+    color:#009387;
+}
+
+/*Sign up*/
+.signup{
+    display:none;
+    background:linear-gradient(#111827,#020617);
+    padding:20px;
+    border-radius:10px;
+    min-width:20%;
+    position:fixed;
+    top:30%;
+    left:40%;
+}
+.createAcc{
+    text-align: center;
+    padding:1em;
 }

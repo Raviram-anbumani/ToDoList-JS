@@ -1,48 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To Do List</title>
-    <link rel="stylesheet" href="todostyle.css">
-    
-</head>
-<body>
-    <header class="navbar">
-        <h1>✔️ To Do List</h1>
-        <p>Managing your time wisely..</p>
-    </header>
-    <div class="container">
-        <h2>Your Tasks🎯</h2>
-        <p id="noTask">📝No task has been Scheduled</p>  
-    </div><hr>
-    <div class="completed">
-        <h2>Tasks Completed✅ </h2>  
-        <p id="noCompletedTask">🕒No task Completed yet</p>       
+    <link rel="stylesheet" href="todostyle.css" />
+  </head>
+  <body>
+    <div class="app">
+      <div class="sidebar">
+        <h2 class="userTitle" id="userTitle">Hello, user🧑‍💻</h2>
+        <div class="navlist">
+          <ul>
+            <li><a href="#main">Dashboard</a></li>
+            <li><a href="#pending">Pending Tasks</a></li>
+            <li><a href="#completed">Completed Tasks</a></li>
+            <li><a id="logoutNav" href="">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="main" id="main">
+        <header class="navbar">
+          <div>
+            <h1>✔️ To Do List</h1>
+            <p>Managing your time wisely..</p>
+          </div>
+          <div>
+            <p id="credentials"></p>
+            <button id="login">Login</button>
+          </div>
+        </header>
+        <h2 class="yourTask" id="pending">Your Tasks🎯</h2>
+        <div class="container">
+          <p id="noTask">📝No task has been Scheduled</p>
+        </div>
+        <hr />
+        <h2 class="yourTask">Tasks Completed✅</h2>
+        <div class="completed" id="completed">
+          <p id="noCompletedTask">🕒No task Completed yet</p>
+        </div>
+        <div class="overlay"></div>
+        <button type="button" id="popup" class="popupbtn">+</button>
+      </div>
     </div>
-    <div class="overlay"></div>
+
     <div class="inputpopup">
-        <h2>Add Task</h2>
-        <form>
-            <input id="inputTask" type="text" placeholder="Your Task" required>
-            <input id="taskCategory" type="text" placeholder="Task Category" required>
-            <label for="Complete"><h3>Due Time</h3></label>
-            <input id="taskTime" type="time" required> 
-            <label for="Complete"><h3>Due Date</h3></label>
-            <input id="inputDescription" type="date" required>
-            <label for="priority"><h3>Priority Level</h3></label>
-            <div id="Plevel">
-                <input class="level" type ="radio" name="Priority" value="high">High
-                <input class="level" type ="radio" name="Priority" value="medium">Medium
-                <input class="level" type ="radio" name="Priority" value="low">Low
-            </div>
-            <button id="addTask">Add</button>
-            <button id="cancel">Cancel</button>
-        </form>
+      <h2>Add Task</h2>
+      <form>
+        <input id="inputTask" type="text" placeholder="Your Task" required />
+        <input
+          id="taskCategory"
+          type="text"
+          placeholder="Task Category"
+          required
+        />
+        <label for="Complete"><h3>Due Time</h3></label>
+        <input id="taskTime" type="time" required />
+        <label for="Complete"><h3>Due Date</h3></label>
+        <input id="inputDescription" type="date" required />
+        <label for="priority"><h3>Priority Level</h3></label>
+        <div id="Plevel">
+          <input class="level" type="radio" name="Priority" value="high" /><span
+            class="levelName"
+            >High</span
+          >
+          <input
+            class="level"
+            type="radio"
+            name="Priority"
+            value="medium"
+          /><span class="levelName">Medium</span>
+          <input class="level" type="radio" name="Priority" value="low" />
+          <div class="levelName">Low</div>
+        </div>
+        <div class="buttonCon">
+          <button id="addTask">Add</button>
+          <button id="cancel">Cancel</button>
+        </div>
+      </form>
     </div>
-    <button type="button" id="popup" class="popupbtn">+</button>
+
+    <div class="signup">
+      <h2>Welcome Back</h2>
+      <form>
+        <input id="username" type="text" placeholder="Your Name" required />
+        <input
+          id="userOcc"
+          type="text"
+          placeholder="Your Occupation"
+          required
+        />
+        <div class="createAcc">
+          <a id="addUser" href="">Don't have an account? Create new account</a>
+        </div>
+        <div class="buttonCon">
+          <button id="loginCheck">Login</button>
+          <button id="logCancel">Cancel</button>
+        </div>
+      </form>
+    </div>
 
 
     <script src="todoscript.js"></script>
-</body>
+  </body>
 </html>

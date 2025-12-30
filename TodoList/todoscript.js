@@ -1,4 +1,3 @@
-
 var pop = document.getElementById("popup");
 var overlay = document.querySelector(".overlay");
 var inputpopup = document.querySelector(".inputpopup");
@@ -18,7 +17,6 @@ function loadData() {
 
   var noTask = document.getElementById("noTask");
   var noCompletedTask = document.getElementById("noCompletedTask");
-  var emptyTask = document.getElementById("completedTask");
   var container = document.querySelector(".container");
   var completed = document.querySelector(".completed");
   if (container.querySelector(".task")) container.innerHTML = "";
@@ -33,14 +31,11 @@ function loadData() {
           var task = document.createElement("div");
           task.setAttribute("class", "task");
           if (!taskItem.completed) {
-            task.innerHTML = `<h4>Task  - ${
-              taskItem.name
-            }</h4><p><strong>💼Task Category : </strong>${
-              taskItem.category
-            }</p><p><strong>⏰Due :</strong> ${taskItem.taskDate} at ${
-              taskItem.taskerTime
-            }</p><button onclick="deleteTask(${index})">Task Completed</button>`;
-            if (taskItem.priority == "high") {
+            task.innerHTML = `<h4>Task  - ${taskItem.name}</h4><p><strong>💼Task Category : </strong>${taskItem.category}</p><p><strong>⏰Due :</strong> ${taskItem.taskDate} at ${taskItem.taskerTime}</p><button onclick="deleteTask(${index})">Task Completed</button>`;
+            if (taskItem.overdue) {
+              task.style.backgroundColor = "#ff0000ff";
+              task.insertAdjacentHTML("beforeend", "⏰");
+            } else if (taskItem.priority == "high") {
               task.style.backgroundColor = "#7a1f1f";
               task.insertAdjacentHTML("beforeend", "<span>🚨</span>");
             } else if (taskItem.priority == "medium") {
@@ -52,15 +47,9 @@ function loadData() {
             container.append(task);
           } else {
             task.style.backgroundColor = "rgba(24, 205, 24, 1)";
-            task.innerHTML = `<h4>Task - ${
-              taskItem.name
-            }</h4><p><strong>💼Task Category : </strong>${
-              taskItem.category
-            }</p><p><strong>⏰Due :</strong> ${taskItem.taskDate} at ${
-              taskItem.taskerTime
-            }</p><p><strong>✔️Completed By :</strong> ${
-              taskItem.completedTime
-            }</p>`;
+            task.innerHTML = `<h4>Task - ${taskItem.name}</h4><p><strong>💼Task Category : </strong>${taskItem.category}</p><p><strong>⏰Due :</strong> ${taskItem.taskDate} at ${taskItem.taskerTime}</p><p><strong>✔️Completed By :</strong> ${taskItem.completedTime}</p>`;
+            if (taskItem.overdue)
+              task.insertAdjacentHTML("beforeend", "⏰Late Completion");
             completed.append(task);
           }
         }
@@ -165,6 +154,10 @@ document.getElementById("addUser").addEventListener("click", (event) => {
   event.preventDefault();
   let username = document.getElementById("username").value;
   let userOcc = document.getElementById("userOcc").value;
+  if (username == "" || userOcc == "") {
+    alert("Please enter the user details correctly.");
+    return;
+  }
   const userData = { name: username, occ: userOcc };
   const userList = JSON.parse(localStorage.getItem("UserCredentials")) || [];
   userList.push(userData);
@@ -175,12 +168,19 @@ document.getElementById("addUser").addEventListener("click", (event) => {
 document.getElementById("loginCheck").addEventListener("click", () => {
   let username = document.getElementById("username").value;
   let userOcc = document.getElementById("userOcc").value;
+  if (username == "" || userOcc == "") {
+    alert("Please enter the user details correctly.");
+    return;
+  }
   const userList = JSON.parse(localStorage.getItem("UserCredentials")) || [];
   for (let user of userList) {
     if (username == user.name && userOcc == user.occ) {
       user.checked = true;
       localStorage.setItem("UserCredentials", JSON.stringify(userList));
       alert("Welcome back! You logged in successfully");
+      document.getElementById("login").style.display = "none";
+      overlay.style.display = "none";
+      loginpopup.style.display = "none";
       loadData();
       return;
     }
@@ -195,13 +195,34 @@ document.getElementById("logoutNav").addEventListener("click", () => {
       user.checked = false;
       localStorage.setItem("UserCredentials", JSON.stringify(userList));
       alert("You have been logged out successfully.");
+      document.getElementById("login").style.display = "block";
       return;
     }
   }
   alert("You are not logged in");
 });
 
+function checkOverdue() {
+  let taskArray = JSON.parse(localStorage.getItem("StoredTasks")) || [];
+  let userList = JSON.parse(localStorage.getItem("UserCredentials")) || [];
 
+  for (let user of userList) {
+    if (user.checked) {
+      taskArray.forEach((task) => {
+        if (user.name == task.username && !task.completed) {
+          let due = new Date(task.taskDate + "T" + task.taskerTime);
+          let now = new Date();
+          if (now > due && !task.overdue) {
+            task.overdue = true;
+            localStorage.setItem("StoredTasks", JSON.stringify(taskArray));
+            loadData();
+          }
+        }
+      });
+    }
+  }
+}
+setInterval(checkOverdue, 1000);
 /*
 function checkOverdue() {
   var tasks = document.querySelectorAll(".task");

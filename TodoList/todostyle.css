@@ -206,3 +206,7 @@ body{
     text-align: center;
     padding:1em;
 }
+a{
+    color:#c0c1c5;
+    text-decoration: none;
+}
